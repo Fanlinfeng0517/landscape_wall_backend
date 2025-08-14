@@ -1,4 +1,4 @@
-package com.bit.landscapewall.model.request;
+package com.bit.landscapewall.model.request.user;
 
 import lombok.Data;
 

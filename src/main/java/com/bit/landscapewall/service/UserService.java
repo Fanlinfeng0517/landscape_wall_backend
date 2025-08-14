@@ -2,9 +2,9 @@ package com.bit.landscapewall.service;
 
 import com.bit.landscapewall.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.bit.landscapewall.model.request.UpdateAvatarRequest;
-import com.bit.landscapewall.model.request.UpdateEmailRequest;
-import com.bit.landscapewall.model.request.UpdatePasswordRequest;
+import com.bit.landscapewall.model.request.user.UpdateAvatarRequest;
+import com.bit.landscapewall.model.request.user.UpdateEmailRequest;
+import com.bit.landscapewall.model.request.user.UpdatePasswordRequest;
 
 /**
 * @author 范林峰

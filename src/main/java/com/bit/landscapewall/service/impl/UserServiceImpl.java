@@ -1,16 +1,15 @@
 package com.bit.landscapewall.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bit.landscapewall.exception.BusinessException;
 import com.bit.landscapewall.exception.ErrorCode;
 import com.bit.landscapewall.model.entity.User;
-import com.bit.landscapewall.model.request.UpdateAvatarRequest;
-import com.bit.landscapewall.model.request.UpdateEmailRequest;
-import com.bit.landscapewall.model.request.UpdatePasswordRequest;
+import com.bit.landscapewall.model.request.user.UpdateAvatarRequest;
+import com.bit.landscapewall.model.request.user.UpdateEmailRequest;
+import com.bit.landscapewall.model.request.user.UpdatePasswordRequest;
 import com.bit.landscapewall.service.UserService;
 import com.bit.landscapewall.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;

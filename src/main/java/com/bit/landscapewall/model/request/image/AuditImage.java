@@ -6,9 +6,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
+import java.io.Serializable;
+
 
 @Data
-public class AuditImage {
+public class AuditImage implements Serializable {
     /**
      * 图片ID
      */

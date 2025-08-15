@@ -2,9 +2,11 @@ package com.bit.landscapewall.model.request.image;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 
 @Data
-public class AddImageRequest {
+public class AddImageRequest implements Serializable {
 
     /**
      * 发布者ID

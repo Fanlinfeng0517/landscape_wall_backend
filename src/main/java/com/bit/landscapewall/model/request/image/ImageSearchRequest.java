@@ -1,10 +1,14 @@
 package com.bit.landscapewall.model.request.image;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.bit.landscapewall.common.PageRequest;
+import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ImageSearchRequest {
+@Data
+public class ImageSearchRequest extends PageRequest implements Serializable {
     /**
      * 发布者姓名
      */

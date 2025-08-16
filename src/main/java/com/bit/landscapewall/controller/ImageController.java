@@ -7,6 +7,7 @@ import com.bit.landscapewall.common.BaseResponse;
 import com.bit.landscapewall.common.ResultUtils;
 import com.bit.landscapewall.exception.ErrorCode;
 import com.bit.landscapewall.exception.ThrowUtils;
+import com.bit.landscapewall.model.entity.Image;
 import com.bit.landscapewall.model.request.image.ImageSearchRequest;
 import com.bit.landscapewall.model.request.image.AddImageRequest;
 import com.bit.landscapewall.model.request.image.AuditImage;
@@ -15,6 +16,8 @@ import com.bit.landscapewall.service.ImageService;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/image")
@@ -48,23 +51,25 @@ public class ImageController {
         return ResultUtils.success(result);
     }
 
-
+    /**
+     * 获取图片
+     * @param request 根据条件查询
+     */
     @PostMapping("/getImage")
-    public BaseResponse<Page<ImageInfoResponse>> getImage(@RequestBody (required = false) ImageSearchRequest request) {
-        // 获取所有图片
-
-
-
+    public BaseResponse<Page<ImageInfoResponse>> getImage(@RequestBody(required = false) @Validated ImageSearchRequest request) {
+//        ThrowUtils.throwIf(request == null, ErrorCode.PARAMS_ERROR);
+        if (request == null) {
+            request = new ImageSearchRequest();
+        }
+        long current = request.getCurrent();
+        long pageSize = request.getPageSize();
+        Page<Image> imagePage = imageService.page(new Page<>(current, pageSize),
+                imageService.getQueryWrapper(request));
+        Page<ImageInfoResponse> imageInfoResponsePage = new Page<>(current,pageSize,imagePage.getTotal());
+        List<ImageInfoResponse> imageInfoResponseList = imageService.getImageInfoResponseList(imagePage.getRecords());
+        imageInfoResponsePage.setRecords(imageInfoResponseList);
+        return ResultUtils.success(imageInfoResponsePage);
     }
 
-    /*    @PostMapping("/register")
-    public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
-        ThrowUtils.throwIf(userRegisterRequest == null, ErrorCode.PARAMS_ERROR);
-        String username = userRegisterRequest.getUsername();
-        String password = userRegisterRequest.getPassword();
-        String checkPassword = userRegisterRequest.getCheckPassword();
-        Long result = userService.userRegister(username, password, checkPassword);
-        return ResultUtils.success(result,"注册成功");
-    }*/
 
 }

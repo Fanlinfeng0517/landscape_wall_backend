@@ -1,12 +1,15 @@
 package com.bit.landscapewall.controller;
 
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bit.landscapewall.common.BaseResponse;
 import com.bit.landscapewall.common.ResultUtils;
 import com.bit.landscapewall.exception.ErrorCode;
 import com.bit.landscapewall.exception.ThrowUtils;
 import com.bit.landscapewall.model.entity.User;
+import com.bit.landscapewall.model.request.user.UserQueryRequest;
 import com.bit.landscapewall.model.request.user.*;
 import com.bit.landscapewall.model.response.UserInfoResponse;
 import com.bit.landscapewall.service.UserService;
@@ -112,6 +115,11 @@ public class userController {
         return ResultUtils.success("修改邮箱成功");
     }
 
+    /**
+     * 修改头像
+     * @param request
+     * @return
+     */
     @PostMapping("/updateAvatar")
     public BaseResponse<?> updateAvatar(@RequestBody @Validated UpdateAvatarRequest request) {
         ThrowUtils.throwIf(request == null, ErrorCode.PARAMS_ERROR);
@@ -122,6 +130,21 @@ public class userController {
         }
         return ResultUtils.success("修改头像成功");
     }
+
+    /**
+     * 获取用户信息
+     * @param id 根据id查询用户，仅管理员
+     *
+     */
+    @PostMapping("/get")
+    @SaCheckRole("ADMIN")
+    public BaseResponse<User> getUserById(long id) {
+        ThrowUtils.throwIf(id <= 0, ErrorCode.PARAMS_ERROR);
+        User user = userService.getById(id);
+        ThrowUtils.throwIf(user == null, ErrorCode.NOT_FOUND_ERROR);
+        return ResultUtils.success(user);
+    }
+
 
     /**
      * 用户登出

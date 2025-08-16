@@ -24,4 +24,5 @@ public interface UserService extends IService<User> {
     Boolean updateEmail(Long userId, UpdateEmailRequest request);
 
     Boolean updateAvatar(Long userId, UpdateAvatarRequest request);
+
 }

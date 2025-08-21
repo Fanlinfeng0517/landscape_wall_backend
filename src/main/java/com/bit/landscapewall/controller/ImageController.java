@@ -11,6 +11,7 @@ import com.bit.landscapewall.model.entity.Image;
 import com.bit.landscapewall.model.request.image.ImageSearchRequest;
 import com.bit.landscapewall.model.request.image.AddImageRequest;
 import com.bit.landscapewall.model.request.image.AuditImage;
+import com.bit.landscapewall.model.request.image.ImageUpdateRequest;
 import com.bit.landscapewall.model.response.ImageInfoResponse;
 import com.bit.landscapewall.service.ImageService;
 import jakarta.annotation.Resource;
@@ -70,6 +71,16 @@ public class ImageController {
         imageInfoResponsePage.setRecords(imageInfoResponseList);
         return ResultUtils.success(imageInfoResponsePage);
     }
+
+    @PostMapping("/updateImage")
+    public BaseResponse<?> updateImage(@RequestBody @Validated ImageUpdateRequest request) {
+        ThrowUtils.throwIf(request == null, ErrorCode.PARAMS_ERROR);
+        Boolean result = imageService.updateImage(request);
+        return ResultUtils.success(result);
+    }
+
+
+
 
 
 }

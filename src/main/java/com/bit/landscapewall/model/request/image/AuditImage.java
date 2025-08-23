@@ -21,11 +21,11 @@ public class AuditImage implements Serializable {
      * 审核状态：0-待审核，1-通过，2-驳回
      */
     @TableField(value = "audit_status")
-    private Integer audit_status;
+    private Integer auditStatus;
 
     /**
      * 驳回原因
      */
     @TableField(value = "reject_reason")
-    private String reject_reason;
+    private String rejectReason;
 }

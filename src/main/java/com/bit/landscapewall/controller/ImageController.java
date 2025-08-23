@@ -57,19 +57,28 @@ public class ImageController {
      * @param request 根据条件查询
      */
     @PostMapping("/getImage")
-    public BaseResponse<Page<ImageInfoResponse>> getImage(@RequestBody(required = false) @Validated ImageSearchRequest request) {
-//        ThrowUtils.throwIf(request == null, ErrorCode.PARAMS_ERROR);
+    public BaseResponse<Page<ImageInfoResponse>> getImage(
+            @RequestBody(required = false) @Validated ImageSearchRequest request) {
+
         if (request == null) {
             request = new ImageSearchRequest();
         }
-        long current = request.getCurrent();
-        long pageSize = request.getPageSize();
-        Page<Image> imagePage = imageService.page(new Page<>(current, pageSize),
-                imageService.getQueryWrapper(request));
-        Page<ImageInfoResponse> imageInfoResponsePage = new Page<>(current,pageSize,imagePage.getTotal());
-        List<ImageInfoResponse> imageInfoResponseList = imageService.getImageInfoResponseList(imagePage.getRecords());
-        imageInfoResponsePage.setRecords(imageInfoResponseList);
-        return ResultUtils.success(imageInfoResponsePage);
+
+        Page<Image> imagePage = imageService.page(
+                new Page<>(request.getCurrent(), request.getPageSize()),
+                imageService.getQueryWrapper(request)
+        );
+
+        Page<ImageInfoResponse> responsePage = new Page<>(
+                imagePage.getCurrent(),
+                imagePage.getSize(),
+                imagePage.getTotal()
+        );
+
+        List<ImageInfoResponse> responses = imageService.getImageInfoResponseList(imagePage.getRecords());
+        responsePage.setRecords(responses);
+
+        return ResultUtils.success(responsePage);
     }
 
     @PostMapping("/updateImage")

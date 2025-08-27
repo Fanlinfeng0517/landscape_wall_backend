@@ -42,7 +42,7 @@ public class User {
      * 
      */
     @TableField(value = "avatar_url")
-    private String avatar_url;
+    private String avatarUrl;
 
     /**
      * 
@@ -54,11 +54,11 @@ public class User {
      * 
      */
     @TableField(value = "created_at")
-    private Date created_at;
+    private Date createdAt;
 
     /**
      * 
      */
     @TableField(value = "updated_at")
-    private Date updated_at;
+    private Date updatedAt;
 }

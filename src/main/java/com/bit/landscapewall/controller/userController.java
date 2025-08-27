@@ -3,13 +3,11 @@ package com.bit.landscapewall.controller;
 
 import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.stp.StpUtil;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bit.landscapewall.common.BaseResponse;
 import com.bit.landscapewall.common.ResultUtils;
 import com.bit.landscapewall.exception.ErrorCode;
 import com.bit.landscapewall.exception.ThrowUtils;
 import com.bit.landscapewall.model.entity.User;
-import com.bit.landscapewall.model.request.user.UserQueryRequest;
 import com.bit.landscapewall.model.request.user.*;
 import com.bit.landscapewall.model.response.UserInfoResponse;
 import com.bit.landscapewall.service.UserService;

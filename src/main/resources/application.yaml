@@ -11,12 +11,21 @@ spring:
     url: jdbc:mysql://localhost:3306/scenery_wall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&usePublicKeyRetrieval=true
     username: root
     password: 15831363233Flf.
+  servlet:
+    multipart:
+          # 单个文件最大限制
+          max-file-size: 10MB
+          # 总请求体最大限制（包括文件和其他参数）
+
+          max-request-size: 10MB
 mybatis-plus:
   configuration:
     # MyBatis 配置
-    map-underscore-to-camel-case: false
+#    map-underscore-to-camel-case: false
     # 仅在开发环境打印日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
   global-config:
     db-config:
       # 逻辑删除配置
@@ -52,3 +61,9 @@ sa-token:
   token-style: uuid
   # 是否输出操作日志
   is-log: true
+
+
+file:
+  upload:
+    path: D:/landscape_wall/upload/images
+

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class ArticleResponse {
@@ -53,4 +54,9 @@ public class ArticleResponse {
      * 更新时间
      */
     private Date updatedAt;
+
+    /**
+     * 关联的图片列表（审核通过的图片）
+     */
+    private List<ImageResponse> images;
 }

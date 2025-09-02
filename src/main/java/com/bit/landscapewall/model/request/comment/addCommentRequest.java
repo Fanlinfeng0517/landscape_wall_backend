@@ -11,10 +11,10 @@ import java.io.Serializable;
 public class addCommentRequest implements Serializable {
 
     /**
-     * 评论所属图片ID
+     * 评论所属文章Id
      */
-    @TableField(value = "image_id")
-    private Long image_id;
+    @TableField(value = "article_id")
+    private Long articleId;
 
     /**
      * 评论内容

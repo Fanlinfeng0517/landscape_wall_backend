@@ -2,6 +2,9 @@ package com.bit.landscapewall.controller;
 
 
 import com.bit.landscapewall.common.BaseResponse;
+import com.bit.landscapewall.common.ResultUtils;
+import com.bit.landscapewall.exception.ErrorCode;
+import com.bit.landscapewall.exception.ThrowUtils;
 import com.bit.landscapewall.model.request.comment.addCommentRequest;
 import com.bit.landscapewall.service.CommentService;
 import jakarta.annotation.Resource;
@@ -26,6 +29,8 @@ public class commentController {
      */
     @RequestMapping("/addComment")
     public BaseResponse<?> addComment(@RequestBody @Validated addCommentRequest request){
-        return null;
+        boolean result = commentService.addComment(request);
+        ThrowUtils.throwIf(!result, ErrorCode.valueOf("评论失败"));
+        return ResultUtils.success("评论成功");
     }
 }

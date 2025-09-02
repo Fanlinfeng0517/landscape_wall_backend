@@ -8,6 +8,12 @@ import java.util.Date;
 
 @Data
 public class UpdateArticleRequest {
+    /**
+     * 文章ID
+     */
+    @TableId(type = IdType.AUTO)
+    private Long id;
+
 
     /**
      * 文章标题（可选，允许空）
@@ -19,10 +25,6 @@ public class UpdateArticleRequest {
      */
     private String content;
 
-    /**
-     * 文章状态: 0-草稿, 1-已发布
-     */
-    private Integer status;
 
     /**
      * 文章分类（如生活、科技、旅行）

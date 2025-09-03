@@ -42,7 +42,7 @@ public class articleController {
     }
 
     /**
-     * 获取文章列表
+     * 获取文章列表（仅获取当前用户的文章）
      * @return
      */
     @GetMapping("/list")
@@ -53,6 +53,18 @@ public class articleController {
         List<ArticleResponse> articleResponse = articleService.getArticleList(userId);
         return ResultUtils.success(articleResponse);
     }
+
+    /**
+     * 获取所有文章列表
+     * @return
+     */
+    @GetMapping("/getAll")
+    public BaseResponse<?> getAllArticleList() {
+        // 获取文章列表信息
+        List<ArticleResponse> articleResponse = articleService.getAllArticleList();
+        return ResultUtils.success(articleResponse);
+    }
+
     /**
      * 获取文章详情
      * @param articleId
@@ -123,5 +135,7 @@ public class articleController {
         articleService.updateById(article);
         return ResultUtils.success("审核成功");
     }
+
+
 }
 
